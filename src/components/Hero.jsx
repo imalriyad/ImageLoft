@@ -1,17 +1,32 @@
-import { useState } from "react";
-import { createClient } from "pexels";
+import { useContext, useEffect, useState } from "react";
+import { ImageContext } from "../contextapi/ContextProvider";
 
 function Hero() {
-  const [query, setQuery] = useState("");
+  const {setQuery} = useContext(ImageContext)
+  const [userInput,setUserInput] = useState('')
 
-  const handleSearch = () => {
-    const client = createClient(
-      "l7KklyjZCSLGpHDWNJEZzKiItkZ6mir7l3ZvyxJUzDT76yRGfgCabJAM"
-    );
-    client.photos.search({ query, per_page: 10 }).then((photos) => {
-      console.log(photos);
-    });
+  const handleSearch =()=>{
+    setQuery(userInput)
+}
+
+useEffect(() => {
+  const handleKeyDown = (event) => {
+  
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default action
+      handleSearch(); // Trigger the search
+    }
   };
+
+  // Attach event listener to the window
+  window.addEventListener('keydown', handleKeyDown);
+
+  // Clean up the event listener on component unmount
+  return () => {
+    window.removeEventListener('keydown', handleKeyDown);
+  };
+}, [userInput]); // Depend on userInput to ensure it has the latest value
+
   return (
     <>
       <div className="mx-auto max-w-screen-lg px-4">
@@ -26,12 +41,13 @@ function Hero() {
           {/* Input feild below */}
           <div className="pt-8 space-y-2">
             <input
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => setUserInput(e.target.value)}
               type="text"
               placeholder="Search for all images on ImageLoft"
               className="input placeholder:font-normal input-bordered text-black md:rounded-r-none w-full max-w-lg"
             />
             <button
+            id="searchBtn"
               onClick={handleSearch}
               className="btn md:-ml-[1px] p-2 md:px-8 md:rounded-l-none md:w-auto max-w-lg w-full bg-[#36A754] hover:bg-[#36A754] text-white"
             >

@@ -6,7 +6,7 @@ import DefaultImages from "./DefaultImages";
 function Home() {
   return (
     <>
-      <div className="">
+      <div>
         <div id="header-bg" className="md:h-[500px] h-[380px]">
           <div className="hero-overlay bg-opacity-50">
             {" "}

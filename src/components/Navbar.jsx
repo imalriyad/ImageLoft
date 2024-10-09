@@ -1,4 +1,5 @@
 import { MdFavorite } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navItem = (
@@ -47,7 +48,7 @@ const Navbar = () => {
               {navItem}
             </ul>
           </div>
-          <a className="btn btn-ghost text-white text-3xl">ImageLoft</a>
+          <Link to={'/'} className="btn btn-ghost text-white text-3xl">ImageLoft</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           {/* <ul className="menu menu-horizontal px-1">{navItem}</ul> */}

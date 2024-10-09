@@ -6,6 +6,7 @@
 
 body {
   font-family: "Kanit", sans-serif;
+  width: 100%;
 }
 
 #header-bg {
@@ -21,3 +22,24 @@ div a.active {
 .activeBtn {
   background-color: #36A754;
 }
+
+#searchBtn{
+  padding-top: 12px;
+}
+
+.download-button {
+  position: absolute;
+  bottom: 4px; /* Default for mobile */
+  right: 4px; /* Keep right alignment */
+  
+}
+
+/* Styles for desktop and tablet screens */
+@media (min-width: 768px) { /* You can adjust the min-width as per your design breakpoints */
+  .download-button {
+    top: 10px;
+    right: 10px; /* Move to the top */
+    bottom: auto; /* Reset bottom */
+  }
+}
+
